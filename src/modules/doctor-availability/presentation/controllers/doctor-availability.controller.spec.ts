@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { DoctorAvailabilityController } from './doctor_availability.controller';
+import { DoctorAvailabilityController } from './doctor-availability.controller';
 
 describe('DoctorAvailabilityController', () => {
   let controller: DoctorAvailabilityController;

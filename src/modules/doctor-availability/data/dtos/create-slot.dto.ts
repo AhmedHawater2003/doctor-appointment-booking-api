@@ -1,8 +1,9 @@
-import { IsDateString, IsDecimal, IsString, IsUUID } from 'class-validator';
+import { IsBoolean, IsDateString, IsDecimal, IsOptional, IsString, IsUUID } from 'class-validator';
 
 export class CreateSlotDto {
   @IsDateString()
   time: string;
+
 
   @IsUUID()
   doctorId: string;
@@ -12,4 +13,9 @@ export class CreateSlotDto {
 
   @IsDecimal()
   cost: number;
+
+
+ @IsOptional()
+ @IsBoolean()
+ isReserved?: boolean;
 }
