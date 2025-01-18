@@ -4,11 +4,11 @@ import { AppService } from './app.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
 import { AppointmentConfirmationModule } from './modules/appointment-confirmation/shared/appointment-confirmation.module';
 import { DoctorAppointmentManagementModule } from './modules/doctor-appointment-management/doctor-appointment-management.module';
-import { AppointmentBookingModule } from './appointment-booking/appointment-booking.module';
 import { DoctorAvailabilityModule } from './modules/doctor-availability/doctor-availability.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService, registerAs } from '@nestjs/config';
 import databaseConfig from './config/database.config';
+import { AppointmentBookingModule } from './modules/appointment-booking/appointment-booking.module';
 
 @Module({
   imports: [

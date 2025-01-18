@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { IAppointmentBookingRepo } from 'src/appointment-booking/domain/contracts/appointment-booking-repo.interface';
+import { IAppointmentBookingRepo } from 'src/modules/appointment-booking/domain/contracts/appointment-booking-repo.interface';
 import { BookAppointmentInput } from './book-appointment.input';
-import { AppointmentBooking } from 'src/appointment-booking/domain/models/appointment-booking.model';
-import { IDoctorAvailabilityGateway } from 'src/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
+import { AppointmentBooking } from 'src/modules/appointment-booking/domain/models/appointment-booking.model';
+import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()

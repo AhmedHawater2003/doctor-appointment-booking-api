@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { DoctorAvailabilityGateway } from 'src/appointment-booking/adapters/gateways/doctor-availability.gateway';
-import { ViewAvailableSlotsController } from 'src/appointment-booking/adapters/controllers/view-available-slots.controller';
+import { DoctorAvailabilityGateway } from 'src/modules/appointment-booking/adapters/gateways/doctor-availability.gateway';
+import { ViewAvailableSlotsController } from 'src/modules/appointment-booking/adapters/controllers/view-available-slots.controller';
 import { ViewAvailableSlotsInteractor } from './use-cases/queries/view-available-slots/view-available-slots.interactor';
 import { IDoctorAvailabilityGateway } from './domain/contracts/doctor-availability-gateway.interface';
 import { BookAppointmentController } from './adapters/controllers/book-appointment.controller';

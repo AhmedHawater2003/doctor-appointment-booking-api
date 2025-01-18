@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
-import { ViewAvailableSlotsInput } from 'src/appointment-booking/use-cases/queries/view-available-slots/view-available-slots.input';
-import { ViewAvailableSlotsInteractor } from 'src/appointment-booking/use-cases/queries/view-available-slots/view-available-slots.interactor';
+import { ViewAvailableSlotsInput } from 'src/modules/appointment-booking/use-cases/queries/view-available-slots/view-available-slots.input';
+import { ViewAvailableSlotsInteractor } from 'src/modules/appointment-booking/use-cases/queries/view-available-slots/view-available-slots.interactor';
 
 @Controller('available-slots')
 export class ViewAvailableSlotsController {

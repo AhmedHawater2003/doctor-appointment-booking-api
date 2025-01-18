@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { IAppointmentBookingRepo } from 'src/appointment-booking/domain/contracts/appointment-booking-repo.interface';
-import { AppointmentBooking } from 'src/appointment-booking/domain/models/appointment-booking.model';
+import { IAppointmentBookingRepo } from 'src/modules/appointment-booking/domain/contracts/appointment-booking-repo.interface';
+import { AppointmentBooking } from 'src/modules/appointment-booking/domain/models/appointment-booking.model';
 import { MemoryDatabase, TableName } from 'src/memory-database';
 
 @Injectable()
