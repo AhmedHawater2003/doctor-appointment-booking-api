@@ -1,7 +1,9 @@
 import { IDoctorAvailabilityGateway } from 'src/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
 import { ViewAvailableSlotsInput } from './view-available-slots.input';
 import { AvailableSlot } from 'src/appointment-booking/domain/models/available-slot.model';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 export class ViewAvailableSlotsInteractor {
   constructor(private doctorAvailabilityGateway: IDoctorAvailabilityGateway) {}
 

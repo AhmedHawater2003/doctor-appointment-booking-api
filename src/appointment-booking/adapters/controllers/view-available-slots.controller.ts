@@ -1,4 +1,16 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
+import { ViewAvailableSlotsInput } from 'src/appointment-booking/use-cases/queries/view-available-slots/view-available-slots.input';
+import { ViewAvailableSlotsInteractor } from 'src/appointment-booking/use-cases/queries/view-available-slots/view-available-slots.interactor';
 
-@Controller('view-available-slots')
-export class ViewAvailableSlotsController {}
+@Controller('available-slots')
+export class ViewAvailableSlotsController {
+  constructor(
+    private readonly viewAvailableSlotsInteractor: ViewAvailableSlotsInteractor,
+  ) {}
+
+  @Get()
+  async getAvailableSlots() {
+    const query = new ViewAvailableSlotsInput(new Date());
+    return this.viewAvailableSlotsInteractor.execute(query);
+  }
+}

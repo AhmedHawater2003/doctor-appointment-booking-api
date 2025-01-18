@@ -2,4 +2,5 @@ import { AvailableSlot } from 'src/appointment-booking/domain/models/available-s
 
 export abstract class IDoctorAvailabilityGateway {
   abstract getAvailableSlotsStartingFrom(date: Date): Promise<AvailableSlot[]>;
+  abstract getSlot(slotId: string): Promise<AvailableSlot>;
 }
