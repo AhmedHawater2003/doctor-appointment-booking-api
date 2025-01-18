@@ -4,6 +4,7 @@ import { BookAppointmentInput } from './book-appointment.input';
 import { AppointmentBooking } from 'src/modules/appointment-booking/domain/models/appointment-booking.model';
 import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
 import { v4 as uuidv4 } from 'uuid';
+import { SlotNotAvailableException } from '../../../domain/exceptions/slot-not-available.exception';
 
 @Injectable()
 export class BookAppointmentInteractor {
@@ -26,7 +27,7 @@ export class BookAppointmentInteractor {
     );
 
     if (!availableSlot.isStillAvailable()) {
-      throw new Error('Slot is not available');
+      throw new SlotNotAvailableException(appointmentBooking.getSlotId());
     }
 
     return await this.appointmentBookingRepo.save(appointmentBooking);
