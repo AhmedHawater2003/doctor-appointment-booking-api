@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { AppointmentConfirmationModule } from './appointment-confirmation/appointment-confirmation.module';
+import { AppointmentConfirmationModule } from './appointment-confirmation/shared/appointment-confirmation.module';
 
 @Module({
   imports: [EventEmitterModule.forRoot(), AppointmentConfirmationModule],
