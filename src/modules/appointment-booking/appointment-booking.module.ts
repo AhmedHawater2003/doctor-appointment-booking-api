@@ -8,8 +8,10 @@ import { IAppointmentBookingRepo } from './domain/contracts/appointment-booking-
 import { AppointmentBookingRepo } from './infra/repos/appointment.booking.repo';
 import { BookAppointmentInteractor } from './use-cases/commands/book-appointment/book-appointment.interactor';
 import { MemoryDatabase } from 'src/memory-database';
+import { DoctorAvailabilityModule } from '../doctor-availability/doctor-availability.module';
 
 @Module({
+  imports: [DoctorAvailabilityModule],
   controllers: [ViewAvailableSlotsController, BookAppointmentController],
   providers: [
     {

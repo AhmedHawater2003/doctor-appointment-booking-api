@@ -1,14 +1,19 @@
 import { Injectable } from '@nestjs/common';
 import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
 import { AvailableSlot } from 'src/modules/appointment-booking/domain/models/available-slot.model';
+import { IDoctorAvailabilityAPI } from 'src/modules/doctor-availability/shared/doctor-availability.api.interface';
 
 @Injectable()
 export class DoctorAvailabilityGateway implements IDoctorAvailabilityGateway {
-  async getSlot(slotId: string): Promise<AvailableSlot> {
-    const dummySlot = new AvailableSlot(new Date(), 20, false);
-    return dummySlot; // TODO: implementation goes here
+  constructor(private readonly doctorAvailabilityApi: IDoctorAvailabilityAPI) {}
+
+  async getSlotIfAvailable(slotId: string): Promise<AvailableSlot> {
+    const slot = await this.doctorAvailabilityApi.getSlotIfAvailable(slotId);
+    if (!slot) return null;
+    const dummySlot = new AvailableSlot(slot.time, slot.cost);
+    return dummySlot;
   }
-  async getAvailableSlotsStartingFrom(date: Date): Promise<AvailableSlot[]> {
-    return []; // TODO: implementation goes here
+  async getAvailableSlots(): Promise<AvailableSlot[]> {
+    return this.doctorAvailabilityApi.listAvailableSlots();
   }
 }

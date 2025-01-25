@@ -1,5 +1,4 @@
 import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
-import { ViewAvailableSlotsInput } from './view-available-slots.input';
 import { AvailableSlot } from 'src/modules/appointment-booking/domain/models/available-slot.model';
 import { Injectable } from '@nestjs/common';
 
@@ -7,11 +6,9 @@ import { Injectable } from '@nestjs/common';
 export class ViewAvailableSlotsInteractor {
   constructor(private doctorAvailabilityGateway: IDoctorAvailabilityGateway) {}
 
-  async execute(input: ViewAvailableSlotsInput): Promise<AvailableSlot[]> {
+  async execute(): Promise<AvailableSlot[]> {
     const availableSlots =
-      await this.doctorAvailabilityGateway.getAvailableSlotsStartingFrom(
-        input.date,
-      );
+      await this.doctorAvailabilityGateway.getAvailableSlots();
     return availableSlots;
   }
 }

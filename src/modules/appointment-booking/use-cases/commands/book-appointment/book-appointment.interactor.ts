@@ -22,11 +22,12 @@ export class BookAppointmentInteractor {
       input.reservedAt,
     );
 
-    const availableSlot = await this.doctorAvailabilityGateway.getSlot(
-      appointmentBooking.getSlotId(),
-    );
+    const availableSlot =
+      await this.doctorAvailabilityGateway.getSlotIfAvailable(
+        appointmentBooking.getSlotId(),
+      );
 
-    if (!availableSlot.isStillAvailable()) {
+    if (!availableSlot) {
       throw new SlotNotAvailableException(appointmentBooking.getSlotId());
     }
 
