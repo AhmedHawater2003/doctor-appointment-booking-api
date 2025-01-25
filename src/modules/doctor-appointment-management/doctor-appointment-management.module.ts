@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppointmentController } from './adapters/in/api/appointment.controller';
-import { InMemoryAppointmentRepository } from './adapters/out/db/in-memory-appointment.repository';
-import { AppointmentService } from './core/application/appointment.service';
-import { AppointmentFacade } from './core/application/ports/in/appointment.facade';
+import { AppointmentController } from './internal/adapters/in/api/appointment.controller';
+import { InMemoryAppointmentRepository } from './internal/adapters/out/db/in-memory-appointment.repository';
+import { AppointmentService } from './internal/core/application/appointment.service';
+import { AppointmentFacade } from './shared/appointment.facade';
 
 @Module({
   controllers: [AppointmentController],

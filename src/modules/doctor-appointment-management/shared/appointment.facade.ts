@@ -1,8 +1,8 @@
 // src/core/application/use-cases/appointment.facade.ts
 
 import { Inject, Injectable } from '@nestjs/common';
-import { Appointment } from '../../../domain/entities/appointment.entity';
-import { AppointmentService } from '../../appointment.service';
+import { Appointment } from '../internal/core/domain/entities/appointment.entity';
+import { AppointmentService } from '../internal/core/application/appointment.service';
 
 @Injectable()
 export class AppointmentFacade {
