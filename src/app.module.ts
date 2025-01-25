@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DoctorAvailabilityModule } from './modules/doctor-availability/doctor-availability.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Slot } from './modules/doctor-availability/data/entities/slot';
+import { Slot } from './modules/doctor-availability/internal/data/entities/slot';
 import { ConfigModule, ConfigService, registerAs } from '@nestjs/config';
 import databaseConfig from './config/database.config';
 
@@ -28,8 +28,10 @@ import databaseConfig from './config/database.config';
         autoLoadEntities: true,
       }),
       inject: [ConfigService],
-    }), DoctorAvailabilityModule],
+    }),
+    DoctorAvailabilityModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

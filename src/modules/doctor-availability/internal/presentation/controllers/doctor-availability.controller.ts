@@ -1,11 +1,10 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { DoctorAvailabilityService } from '../../business/services/doctor-availability.service';
 import { CreateSlotDto } from '../../data/dtos/create-slot.dto';
-import { IDoctorAvailabilityAPI } from '../interfaces/IDoctorAvailabilityAPI';
+import { IDoctorAvailabilityAPI } from '../../../shared/doctor-availability.api.interface';
 
 @Controller('doctor-availability')
-export class DoctorAvailabilityController implements IDoctorAvailabilityAPI{
-
+export class DoctorAvailabilityController implements IDoctorAvailabilityAPI {
   constructor(private readonly service: DoctorAvailabilityService) {}
 
   @Get('slots')

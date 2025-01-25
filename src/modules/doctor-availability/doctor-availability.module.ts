@@ -1,14 +1,16 @@
 import { Module } from '@nestjs/common';
-import { DoctorAvailabilityService } from './business/services/doctor-availability.service';
-import { DoctorAvailabilityController } from './presentation/controllers/doctor-availability.controller';
+import { DoctorAvailabilityService } from './internal/business/services/doctor-availability.service';
+import { DoctorAvailabilityController } from './internal/presentation/controllers/doctor-availability.controller';
+import { IDoctorAvailabilityAPI } from './shared/doctor-availability.api.interface';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Slot } from './data/entities/slot';
-import { DoctorAvailabilityRepository } from './data/repository/doctor.repository';
+import { Slot } from './internal/data/entities/slot';
+import { DoctorAvailabilityRepository } from './internal/data/repository/doctor.repository';
+import { DoctorAvailabilityApi } from './shared/doctor-availability.api';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Slot])],
+  exports: [IDoctorAvailabilityAPI, DoctorAvailabilityApi],
   controllers: [DoctorAvailabilityController],
-  providers: [DoctorAvailabilityService, 
-    DoctorAvailabilityRepository],
+  providers: [DoctorAvailabilityService, DoctorAvailabilityRepository],
 })
 export class DoctorAvailabilityModule {}

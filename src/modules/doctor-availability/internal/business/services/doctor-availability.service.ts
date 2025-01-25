@@ -16,6 +16,9 @@ export class DoctorAvailabilityService {
     return this.repository.findAll();
   }
 
+  async getSlot(id: string): Promise<Slot> {
+    return this.repository.findById(id);
+  }
 
   /**
    * Creates a new slot for a given doctor/time if it doesn't already exist.
@@ -45,5 +48,4 @@ export class DoctorAvailabilityService {
 
     return this.repository.saveSlot(slot);
   }
-   
 }

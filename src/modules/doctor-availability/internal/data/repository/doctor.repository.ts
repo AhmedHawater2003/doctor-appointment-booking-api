@@ -9,7 +9,7 @@ export class DoctorAvailabilityRepository {
     @InjectRepository(Slot)
     private readonly slotRepository: Repository<Slot>,
   ) {}
-  
+
   async findAll(): Promise<Slot[]> {
     return this.slotRepository.find();
   }
@@ -18,12 +18,21 @@ export class DoctorAvailabilityRepository {
     return this.slotRepository.findOne({ where: { id } });
   }
 
-  async findByDoctorAndTime(doctorId: string, time: Date): Promise<Slot | null> {
+  async findByDoctorAndTime(doctorId: string): Promise<Slot | null> {
     return this.slotRepository.findOne({
-      where: { doctorId, time },
+      where: { doctorId },
     });
   }
 
+  async findAvailableSlots(
+    isReserved: boolean,
+    startTime: Date,
+    endTime: Date,
+  ): Promise<Slot[]> {
+    return this.slotRepository.find({
+      where: { isReserved, time: { $gte: startTime, $lte: endTime } },
+    });
+  }
   async saveSlot(slot: Slot): Promise<Slot> {
     return this.slotRepository.save(slot);
   }
