@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { EventEmitterModule } from '@nestjs/event-emitter';
+import { AppointmentConfirmationModule } from './appointment-confirmation/shared/appointment-confirmation.module';
 import { DoctorAppointmentManagementModule } from './modules/doctor-appointment-management/doctor-appointment-management.module';
 import { DoctorAvailabilityModule } from './modules/doctor-availability/doctor-availability.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -10,6 +12,8 @@ import databaseConfig from './config/database.config';
 
 @Module({
   imports: [
+    EventEmitterModule.forRoot(), 
+    AppointmentConfirmationModule,
     DoctorAppointmentManagementModule,
     ConfigModule.forRoot({
       isGlobal: true,
