@@ -27,7 +27,7 @@
 A backend system for a doctor appointment booking application. The system is designed for a specific single doctor and can handle managing and booking appointments. The system follows modular monolith architecture
 - Doctor Availability -> Layered Architecture
 - Appointment Booking -> Clean Architecture
-- 
+- Appointment Confirmation -> 
 - Doctor Appointment Management -> Hexagonal Architecture
 
 ## Project setup
