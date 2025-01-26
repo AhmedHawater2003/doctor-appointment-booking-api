@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { DoctorAppointmentManagementModule } from './modules/doctor-appointment-management/doctor-appointment-management.module';
 import { DoctorAvailabilityModule } from './modules/doctor-availability/doctor-availability.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Slot } from './modules/doctor-availability/internal/data/entities/slot';
@@ -9,6 +10,7 @@ import databaseConfig from './config/database.config';
 
 @Module({
   imports: [
+    DoctorAppointmentManagementModule,
     ConfigModule.forRoot({
       isGlobal: true,
       load: [databaseConfig],
