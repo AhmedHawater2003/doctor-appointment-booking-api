@@ -25,7 +25,6 @@ export class BookAppointmentController {
       requestBody.slotId,
       requestBody.patientId,
       requestBody.patientName,
-      new Date(),
     );
     const result = await this.bookAppointmentInteractor.execute(command);
     return result;

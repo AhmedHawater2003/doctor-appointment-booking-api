@@ -16,6 +16,18 @@ export class DoctorAvailabilityApi implements IDoctorAvailabilityAPI {
     return await this.slotsRepository.findAvailableSlots();
   }
 
+  async reserveSlot(id: string): Promise<void> {
+    this.slotsRepository.updateSlot(id, {
+      isReserved: true,
+    });
+  }
+
+  async freeSlot(id: string): Promise<void> {
+    this.slotsRepository.updateSlot(id, {
+      isReserved: false,
+    });
+  }
+
   private isSlotAvailable(slot: Slot): boolean {
     return !slot.isReserved && slot.time >= new Date();
   }

@@ -4,13 +4,16 @@ import { BookAppointmentInput } from './book-appointment.input';
 import { AppointmentBooking } from 'src/modules/appointment-booking/domain/models/appointment-booking.model';
 import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
 import { v4 as uuidv4 } from 'uuid';
-import { SlotNotAvailableException } from '../../../domain/exceptions/slot-not-available.exception';
+import { SlotNotAvailableException } from 'src/modules/appointment-booking/domain/exceptions/slot-not-available.exception';
+import { IDoctorAppointmentManagementGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-appointment-management-gateway.interface';
+import { AvailableSlot } from 'src/modules/appointment-booking/domain/models/available-slot.model';
 
 @Injectable()
 export class BookAppointmentInteractor {
   constructor(
     private readonly appointmentBookingRepo: IAppointmentBookingRepo,
     private readonly doctorAvailabilityGateway: IDoctorAvailabilityGateway,
+    private readonly doctorAppointmentManagementGateway: IDoctorAppointmentManagementGateway,
   ) {}
 
   async execute(input: BookAppointmentInput): Promise<AppointmentBooking> {
@@ -19,20 +22,32 @@ export class BookAppointmentInteractor {
       input.slotId,
       input.patientId,
       input.patientName,
-      input.reservedAt,
+      new Date(),
     );
 
+    const availableSlot = await this.checkSlotAvailability(input.slotId);
+
+    await this.doctorAvailabilityGateway.reserveSlot(input.slotId);
+
+    const savedAppointmentBooking =
+      await this.appointmentBookingRepo.save(appointmentBooking);
+
+    await this.doctorAppointmentManagementGateway.createAppointment(
+      appointmentBooking,
+      availableSlot.getTime(),
+    );
+
+    return savedAppointmentBooking;
+  }
+
+  private async checkSlotAvailability(slotId: string): Promise<AvailableSlot> {
     const availableSlot =
-      await this.doctorAvailabilityGateway.getSlotIfAvailable(
-        appointmentBooking.getSlotId(),
-      );
+      await this.doctorAvailabilityGateway.getSlotIfAvailable(slotId);
 
     if (!availableSlot) {
-      throw new SlotNotAvailableException(appointmentBooking.getSlotId());
+      throw new SlotNotAvailableException(slotId);
     }
 
-    return await this.appointmentBookingRepo.save(appointmentBooking);
-
-    //TODO: create an Appointment by calling doctor appointment management service
+    return availableSlot;
   }
 }

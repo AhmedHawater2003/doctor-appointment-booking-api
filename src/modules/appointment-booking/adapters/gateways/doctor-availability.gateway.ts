@@ -7,13 +7,26 @@ import { IDoctorAvailabilityAPI } from 'src/modules/doctor-availability/shared/d
 export class DoctorAvailabilityGateway implements IDoctorAvailabilityGateway {
   constructor(private readonly doctorAvailabilityApi: IDoctorAvailabilityAPI) {}
 
-  async getSlotIfAvailable(slotId: string): Promise<AvailableSlot> {
+  async getSlotIfAvailable(slotId: string) {
     const slot = await this.doctorAvailabilityApi.getSlotIfAvailable(slotId);
     if (!slot) return null;
     const dummySlot = new AvailableSlot(slot.time, slot.cost);
     return dummySlot;
   }
-  async getAvailableSlots(): Promise<AvailableSlot[]> {
-    return this.doctorAvailabilityApi.listAvailableSlots();
+
+  async getAvailableSlots() {
+    const availableSlots =
+      await this.doctorAvailabilityApi.listAvailableSlots();
+    return availableSlots.map(
+      (slot) => new AvailableSlot(slot.time, slot.cost),
+    );
+  }
+
+  async reserveSlot(slotId: string) {
+    this.doctorAvailabilityApi.reserveSlot(slotId);
+  }
+
+  async freeSlot(slotId: string) {
+    this.doctorAvailabilityApi.freeSlot(slotId);
   }
 }

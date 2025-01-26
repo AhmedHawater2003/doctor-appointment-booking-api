@@ -3,4 +3,6 @@ import { AvailableSlot } from 'src/modules/appointment-booking/domain/models/ava
 export abstract class IDoctorAvailabilityGateway {
   abstract getAvailableSlots(): Promise<AvailableSlot[]>;
   abstract getSlotIfAvailable(slotId: string): Promise<AvailableSlot>;
+  abstract reserveSlot(slotId: string): Promise<any>;
+  abstract freeSlot(slotId: string): Promise<any>;
 }

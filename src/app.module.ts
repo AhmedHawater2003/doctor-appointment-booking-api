@@ -6,13 +6,13 @@ import { AppointmentConfirmationModule } from './modules/appointment-confirmatio
 import { DoctorAppointmentManagementModule } from './modules/doctor-appointment-management/doctor-appointment-management.module';
 import { DoctorAvailabilityModule } from './modules/doctor-availability/doctor-availability.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ConfigModule, ConfigService, registerAs } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import databaseConfig from './config/database.config';
 import { AppointmentBookingModule } from './modules/appointment-booking/appointment-booking.module';
 
 @Module({
   imports: [
-    EventEmitterModule.forRoot(), 
+    EventEmitterModule.forRoot(),
     AppointmentConfirmationModule,
     DoctorAppointmentManagementModule,
     AppointmentBookingModule,

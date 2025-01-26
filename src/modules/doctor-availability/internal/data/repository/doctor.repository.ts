@@ -32,6 +32,11 @@ export class DoctorAvailabilityRepository {
       },
     });
   }
+
+  async updateSlot(slotId: string, updateFields: Partial<Slot>): Promise<void> {
+    await this.slotRepository.update(slotId, updateFields);
+  }
+
   async saveSlot(slot: Slot): Promise<Slot> {
     return this.slotRepository.save(slot);
   }

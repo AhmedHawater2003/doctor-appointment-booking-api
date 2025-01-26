@@ -9,9 +9,12 @@ import { AppointmentBookingRepo } from './infra/repos/appointment.booking.repo';
 import { BookAppointmentInteractor } from './use-cases/commands/book-appointment/book-appointment.interactor';
 import { MemoryDatabase } from 'src/memory-database';
 import { DoctorAvailabilityModule } from '../doctor-availability/doctor-availability.module';
+import { IDoctorAppointmentManagementGateway } from './domain/contracts/doctor-appointment-management-gateway.interface';
+import { DoctorAppointmentManagementGateway } from './adapters/gateways/doctor-appointment-managment.gateway';
+import { DoctorAppointmentManagementModule } from '../doctor-appointment-management/doctor-appointment-management.module';
 
 @Module({
-  imports: [DoctorAvailabilityModule],
+  imports: [DoctorAvailabilityModule, DoctorAppointmentManagementModule],
   controllers: [ViewAvailableSlotsController, BookAppointmentController],
   providers: [
     {
@@ -21,6 +24,10 @@ import { DoctorAvailabilityModule } from '../doctor-availability/doctor-availabi
     {
       provide: IAppointmentBookingRepo,
       useClass: AppointmentBookingRepo,
+    },
+    {
+      provide: IDoctorAppointmentManagementGateway,
+      useClass: DoctorAppointmentManagementGateway,
     },
     ViewAvailableSlotsInteractor,
     BookAppointmentInteractor,

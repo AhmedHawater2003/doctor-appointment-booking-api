@@ -14,4 +14,16 @@ export class AppointmentBooking {
   public getSlotId(): string {
     return this.slotId;
   }
+
+  public getPatientId(): string {
+    return this.patientId;
+  }
+
+  public getPatientName(): string {
+    return this.patientName;
+  }
+
+  public getReservationTime(): Date {
+    return this.reservedAt;
+  }
 }
