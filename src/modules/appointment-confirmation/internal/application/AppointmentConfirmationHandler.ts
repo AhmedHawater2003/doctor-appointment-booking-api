@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { AppointmentConfirmationDetails } from "./AppointmentConfirmationDetails";
-import { INotificationAPI } from "src/notification/shared/INotificationAPI";
+import { INotificationAPI } from "src/modules/notification/shared/INotificationAPI";
 
 @Injectable()
 export class AppointmentConfirmationHandler{

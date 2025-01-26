@@ -1,5 +1,5 @@
 import { AppointmentBookedDto } from "src/appointment-booking/shared/dtos/AppointmentBookedDto";
-import { AppointmentConfirmationDetails } from "src/appointment-confirmation/internal/application/AppointmentConfirmationDetails";
+import { AppointmentConfirmationDetails } from "../../application/AppointmentConfirmationDetails";
 
 export class AppointmentConfirmationMapper {
     public static toAppointmentConfirmationDetails(appointmentBookedDto: AppointmentBookedDto): AppointmentConfirmationDetails {
