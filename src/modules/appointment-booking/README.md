@@ -2,6 +2,8 @@
 
 In this README, I am going to discuss briefly some of the architectural and technical decisions taken while implementing this module.
 
+![Drawing 2024-02-29 09 45 05 excalidraw](https://github.com/user-attachments/assets/ba6e75a8-f48a-4eb3-bbf7-ab33faa90fb2)
+
 ## Integration methods
 - Integration with the doctor availability module is done via **direct calls**
 - Integration with the appointment confirmation module is done via **publishing to an event bus**
