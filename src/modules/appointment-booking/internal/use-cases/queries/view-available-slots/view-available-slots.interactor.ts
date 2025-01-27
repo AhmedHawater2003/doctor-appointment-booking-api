@@ -1,5 +1,5 @@
-import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-availability-gateway.interface';
-import { AvailableSlot } from 'src/modules/appointment-booking/domain/models/available-slot.model';
+import { IDoctorAvailabilityGateway } from 'src/modules/appointment-booking/internal/domain/contracts/doctor-availability-gateway.interface';
+import { AvailableSlot } from 'src/modules/appointment-booking/internal/domain/models/available-slot.model';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

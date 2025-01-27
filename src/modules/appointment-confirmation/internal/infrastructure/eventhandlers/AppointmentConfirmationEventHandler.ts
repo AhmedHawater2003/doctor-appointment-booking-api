@@ -1,5 +1,5 @@
 import { Inject, Injectable,OnModuleInit } from "@nestjs/common";
-import { AppointmentBookedDto } from "src/appointment-booking/shared/dtos/AppointmentBookedDto";
+import { AppointmentBookedDto } from "src/modules/appointment-booking/shared/dtos/AppointmentBookedDto";
 import { IEventBus } from "src/Shared/IEventBus";
 import { AppointmentConfirmationHandler } from "../../application/AppointmentConfirmationHandler";
 import { AppointmentConfirmationMapper } from "../mappers/AppointmentConfirmationMapper";

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { IDoctorAppointmentManagementGateway } from 'src/modules/appointment-booking/domain/contracts/doctor-appointment-management-gateway.interface';
+import { IDoctorAppointmentManagementGateway } from 'src/modules/appointment-booking/internal/domain/contracts/doctor-appointment-management-gateway.interface';
 import { AppointmentFacade } from 'src/modules/doctor-appointment-management/shared/appointment.facade';
-import { AppointmentBooking } from 'src/modules/appointment-booking/domain/models/appointment-booking.model';
+import { AppointmentBooking } from 'src/modules/appointment-booking/internal/domain/models/appointment-booking.model';
 import { env } from 'process';
 
 @Injectable()
