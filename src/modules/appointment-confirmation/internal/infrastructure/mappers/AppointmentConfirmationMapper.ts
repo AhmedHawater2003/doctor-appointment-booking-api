@@ -1,4 +1,4 @@
-import { AppointmentBookedDto } from "src/appointment-booking/shared/dtos/AppointmentBookedDto";
+import { AppointmentBookedDto } from "src/modules/appointment-booking/shared/dtos/AppointmentBookedDto";
 import { AppointmentConfirmationDetails } from "../../application/AppointmentConfirmationDetails";
 
 export class AppointmentConfirmationMapper {

@@ -6,9 +6,9 @@ import {
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { IAppointmentBookingRepo } from 'src/modules/appointment-booking/domain/contracts/appointment-booking-repo.interface';
-import { BookAppointmentInput } from 'src/modules/appointment-booking/use-cases/commands/book-appointment/book-appointment.input';
-import { BookAppointmentInteractor } from 'src/modules/appointment-booking/use-cases/commands/book-appointment/book-appointment.interactor';
+import { IAppointmentBookingRepo } from 'src/modules/appointment-booking/internal/domain/contracts/appointment-booking-repo.interface';
+import { BookAppointmentInput } from 'src/modules/appointment-booking/internal/use-cases/commands/book-appointment/book-appointment.input';
+import { BookAppointmentInteractor } from 'src/modules/appointment-booking/internal/use-cases/commands/book-appointment/book-appointment.interactor';
 import { BookAppointmentDto } from '../dtos/book-appointment.dto';
 
 @Controller('appointment-booking')
