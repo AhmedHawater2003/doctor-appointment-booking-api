@@ -73,7 +73,8 @@ $ pnpm run test:cov
 ### Overall Preview
 
 ### Appointment Booking Module (clean architecture)
-![image](https://github.com/user-attachments/assets/050db480-af50-4e22-8a8b-720d2b245b48)
+![Drawing 2024-02-29 09 45 05 excalidraw](https://github.com/user-attachments/assets/ba6e75a8-f48a-4eb3-bbf7-ab33faa90fb2)
+
 
 ### Appointment Confirmation
 ![image](https://github.com/user-attachments/assets/e82c70e3-ef89-4cb8-8fb4-2c065f387a66)
