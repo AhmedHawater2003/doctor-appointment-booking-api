@@ -14,7 +14,7 @@ export class DoctorAvailabilityRepository {
     return this.slotRepository.find();
   }
 
-  async findById(id: string): Promise<Slot | undefined> {
+  async findById(id: string): Promise<Slot | null> {
     return this.slotRepository.findOne({ where: { id } });
   }
 

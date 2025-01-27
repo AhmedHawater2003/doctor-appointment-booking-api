@@ -7,9 +7,9 @@ import { IDoctorAvailabilityAPI } from './doctor-availability.api.interface';
 export class DoctorAvailabilityApi implements IDoctorAvailabilityAPI {
   constructor(private readonly slotsRepository: DoctorAvailabilityRepository) {}
 
-  async getSlotIfAvailable(id: string): Promise<Slot> {
+  async getSlotIfAvailable(id: string) {
     const slot = await this.slotsRepository.findById(id);
-    return this.isSlotAvailable(slot) ? slot : null;
+    return slot && this.isSlotAvailable(slot) ? slot : null;
   }
 
   async listAvailableSlots(): Promise<Slot[]> {

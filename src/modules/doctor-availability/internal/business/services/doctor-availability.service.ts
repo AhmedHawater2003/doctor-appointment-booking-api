@@ -1,6 +1,4 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
 import { CreateSlotDto } from '../../data/dtos/create-slot.dto';
 import { Slot } from '../../data/entities/slot';
 import { DoctorAvailabilityRepository } from '../../data/repository/doctor.repository';
