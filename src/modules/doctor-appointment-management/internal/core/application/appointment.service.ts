@@ -4,12 +4,14 @@ import {
   AppointmentStatus,
 } from '../domain/entities/appointment.entity';
 import { IAppointmentRepository } from './ports/out/appointment.repository';
+import { IDoctorAvailabilityGateway } from './doctor-availability.gateway.interface';
 
 @Injectable()
 export class AppointmentService {
   constructor(
     @Inject('IAppointmentRepository')
     private readonly appointmentRepository: IAppointmentRepository,
+    private readonly doctorAvailabilityGateway: IDoctorAvailabilityGateway,
   ) {}
 
   async createAppointment(
@@ -56,6 +58,7 @@ export class AppointmentService {
         break;
       case AppointmentStatus.CANCELED:
         appointment.cancel();
+        this.doctorAvailabilityGateway.releaseSlot(appointment.slotId);
         break;
       case AppointmentStatus.SCHEDULED:
         // Typically we don't revert an existing appointment to SCHEDULED unless domain allows

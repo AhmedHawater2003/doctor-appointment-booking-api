@@ -22,7 +22,7 @@ import { EventBus } from 'src/shared/EventBus';
   providers: [
     {
       provide: IEventBus,
-      useValue: EventBus,
+      useClass: EventBus,
     },
     {
       provide: IDoctorAvailabilityGateway,
