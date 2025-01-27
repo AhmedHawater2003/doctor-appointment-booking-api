@@ -18,9 +18,12 @@ export class DoctorAvailabilityRepository {
     return this.slotRepository.findOne({ where: { id } });
   }
 
-  async findByDoctorAndTime(doctorId: string): Promise<Slot | null> {
+  async findByDoctorAndTime(
+    doctorId: string,
+    time: Date,
+  ): Promise<Slot | null> {
     return this.slotRepository.findOne({
-      where: { doctorId },
+      where: { doctorId, time },
     });
   }
 
