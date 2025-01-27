@@ -14,12 +14,12 @@ export class BookAppointmentInteractor {
     private readonly appointmentBookingRepo: IAppointmentBookingRepo,
     private readonly doctorAvailabilityGateway: IDoctorAvailabilityGateway,
     private readonly doctorAppointmentManagementGateway: IDoctorAppointmentManagementGateway,
-  ) { }
+  ) {}
 
   async execute(input: BookAppointmentInput): Promise<AppointmentBooking> {
     const availableSlot = await this.checkSlotAvailability(input.slotId);
 
-    const doctorName: string = "Doctor Ahmed";
+    const doctorName = 'Doctor Ahmed';
     const appointmentBooking = AppointmentBooking.newAppointment(
       uuidv4(),
       input.slotId,
@@ -27,7 +27,7 @@ export class BookAppointmentInteractor {
       input.patientName,
       new Date(),
       availableSlot.getTime(),
-      doctorName
+      doctorName,
     );
 
     await this.doctorAvailabilityGateway.reserveSlot(input.slotId);

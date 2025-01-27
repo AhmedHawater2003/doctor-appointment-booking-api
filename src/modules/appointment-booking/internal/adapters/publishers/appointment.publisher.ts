@@ -1,6 +1,6 @@
 import { IEventBus } from 'src/shared/IEventBus';
-import { IAppointmentEvent } from '../../domain/models/IAppointmentEvent';
-import { AppointmentBooked } from '../../domain/models/AppointmentBooked';
+import { IAppointmentEvent } from '../../domain/events/IAppointmentEvent';
+import { AppointmentBooked } from '../../domain/events/AppointmentBooked';
 import { Injectable } from '@nestjs/common';
 import { AppointmentBookedDto } from 'src/modules/appointment-booking/shared/dtos/AppointmentBookedDto';
 

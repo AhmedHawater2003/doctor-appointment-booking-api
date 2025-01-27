@@ -1,5 +1,5 @@
-import { AppointmentBooked } from "./AppointmentBooked";
-import { IAppointmentEvent } from "./IAppointmentEvent";
+import { AppointmentBooked } from '../events/AppointmentBooked';
+import { IAppointmentEvent } from '../events/IAppointmentEvent';
 
 export class AppointmentBooking {
   private occuredEvents: IAppointmentEvent[] = [];
@@ -10,11 +10,27 @@ export class AppointmentBooking {
     private patientId: string,
     private patientName: string,
     private reservedAt: Date,
-  ) { }
+  ) {}
 
-  public static newAppointment(id: string, slotId: string, patientId: string, patientName: string, reservedAt: Date, slotTime: Date, doctorName: string): AppointmentBooking {
-    var appointment: AppointmentBooking = new AppointmentBooking(id, slotId, patientId, patientName, reservedAt);
-    appointment.occuredEvents.push(AppointmentBooked.of(appointment, slotTime, doctorName));
+  public static newAppointment(
+    id: string,
+    slotId: string,
+    patientId: string,
+    patientName: string,
+    reservedAt: Date,
+    slotTime: Date,
+    doctorName: string,
+  ): AppointmentBooking {
+    const appointment: AppointmentBooking = new AppointmentBooking(
+      id,
+      slotId,
+      patientId,
+      patientName,
+      reservedAt,
+    );
+    appointment.occuredEvents.push(
+      AppointmentBooked.of(appointment, slotTime, doctorName),
+    );
     return appointment;
   }
 
@@ -39,9 +55,8 @@ export class AppointmentBooking {
   }
 
   public getOccuredEvents(): IAppointmentEvent[] {
-    var events: IAppointmentEvent[] = this.occuredEvents;
+    const events: IAppointmentEvent[] = this.occuredEvents;
     this.occuredEvents = [];
-    return events
+    return events;
   }
-
 }
