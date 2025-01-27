@@ -12,11 +12,18 @@ import { DoctorAvailabilityModule } from '../doctor-availability/doctor-availabi
 import { IDoctorAppointmentManagementGateway } from './internal/domain/contracts/doctor-appointment-management-gateway.interface';
 import { DoctorAppointmentManagementGateway } from './internal/adapters/gateways/doctor-appointment-managment.gateway';
 import { DoctorAppointmentManagementModule } from '../doctor-appointment-management/doctor-appointment-management.module';
+import { AppointmentPublisher } from './internal/adapters/publishers/appointment.publisher';
+import { IEventBus } from 'src/shared/IEventBus';
+import { EventBus } from 'src/shared/EventBus';
 
 @Module({
   imports: [DoctorAvailabilityModule, DoctorAppointmentManagementModule],
   controllers: [ViewAvailableSlotsController, BookAppointmentController],
   providers: [
+    {
+      provide: IEventBus,
+      useValue: EventBus,
+    },
     {
       provide: IDoctorAvailabilityGateway,
       useClass: DoctorAvailabilityGateway,
@@ -31,6 +38,7 @@ import { DoctorAppointmentManagementModule } from '../doctor-appointment-managem
     },
     ViewAvailableSlotsInteractor,
     BookAppointmentInteractor,
+    AppointmentPublisher,
     MemoryDatabase,
   ],
 })
