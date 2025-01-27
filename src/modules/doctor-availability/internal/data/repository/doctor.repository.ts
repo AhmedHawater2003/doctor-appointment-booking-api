@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { MoreThan, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Slot } from '../entities/slot';
 
@@ -24,15 +24,19 @@ export class DoctorAvailabilityRepository {
     });
   }
 
-  async findAvailableSlots(
-    isReserved: boolean,
-    startTime: Date,
-    endTime: Date,
-  ): Promise<Slot[]> {
+  async findAvailableSlots(): Promise<Slot[]> {
     return this.slotRepository.find({
-      where: { isReserved, time: { $gte: startTime, $lte: endTime } },
+      where: {
+        isReserved: false,
+        time: MoreThan(new Date()),
+      },
     });
   }
+
+  async updateSlot(slotId: string, updateFields: Partial<Slot>): Promise<void> {
+    await this.slotRepository.update(slotId, updateFields);
+  }
+
   async saveSlot(slot: Slot): Promise<Slot> {
     return this.slotRepository.save(slot);
   }

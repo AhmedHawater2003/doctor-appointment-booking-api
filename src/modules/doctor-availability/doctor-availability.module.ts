@@ -9,8 +9,12 @@ import { DoctorAvailabilityApi } from './shared/doctor-availability.api';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Slot])],
-  exports: [IDoctorAvailabilityAPI, DoctorAvailabilityApi],
+  exports: [IDoctorAvailabilityAPI],
   controllers: [DoctorAvailabilityController],
-  providers: [DoctorAvailabilityService, DoctorAvailabilityRepository],
+  providers: [
+    DoctorAvailabilityService,
+    { provide: IDoctorAvailabilityAPI, useClass: DoctorAvailabilityApi },
+    DoctorAvailabilityRepository,
+  ],
 })
 export class DoctorAvailabilityModule {}

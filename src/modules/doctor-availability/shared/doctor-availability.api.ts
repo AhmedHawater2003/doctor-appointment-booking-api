@@ -12,16 +12,20 @@ export class DoctorAvailabilityApi implements IDoctorAvailabilityAPI {
     return this.isSlotAvailable(slot) ? slot : null;
   }
 
-  async listAvailableSlots(
-    startTime: Date,
-    endTime: Date,
-    isReserved: boolean,
-  ): Promise<Slot[]> {
-    return await this.slotsRepository.findAvailableSlots(
-      isReserved,
-      startTime,
-      endTime,
-    );
+  async listAvailableSlots(): Promise<Slot[]> {
+    return await this.slotsRepository.findAvailableSlots();
+  }
+
+  async reserveSlot(id: string): Promise<void> {
+    this.slotsRepository.updateSlot(id, {
+      isReserved: true,
+    });
+  }
+
+  async freeSlot(id: string): Promise<void> {
+    this.slotsRepository.updateSlot(id, {
+      isReserved: false,
+    });
   }
 
   private isSlotAvailable(slot: Slot): boolean {
